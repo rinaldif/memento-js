@@ -19,14 +19,15 @@ export function renderMementoMori(dob, containerId) {
   };
 
   const container = document.getElementById(containerId);
-  const marginL = 35, marginR = 5, marginT = 30, marginB = 5;
+  const marginL = 40, marginR = 5, marginT = 30, marginB = 5;
   const numCols = xLabels.length;   // 52 (weeks)
   const numRows = yLabels.length;   // 80 (years)
 
   // Fit chart within both container width AND viewport height (keep cells square).
-  // Use 80% of viewport height so the chart is visible at a glance with some
-  // room for the surrounding text.
-  const availableWidth = container.clientWidth || 600;
+  // Cap width to the viewport minus page padding so it never overflows on mobile.
+  const pagePadding = 32;
+  const maxScreenWidth = window.innerWidth - pagePadding;
+  const availableWidth = Math.min(container.clientWidth || 600, maxScreenWidth);
   const availableHeight = window.innerHeight * 0.8;
   const cellFromWidth = (availableWidth - marginL - marginR) / numCols;
   const cellFromHeight = (availableHeight - marginT - marginB) / numRows;
