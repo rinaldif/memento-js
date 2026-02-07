@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memento Vivere</title>
+
+  <!-- PWA meta tags -->
+  <link rel="manifest" href="static/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Memento">
+  <link rel="apple-touch-icon" href="static/icon-192.png">
+  <meta name="theme-color" content="#FF6B35">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Plotly.js via CDN -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Memento Vivere</h1>
+    </header>
+
+    <main>
+      <!-- Form section -->
+      <section class="form-section">
+        <h4>Please enter your <span class="accent">name</span> and <span class="accent">date of birth</span> in the form below.</h4>
+        <form id="calcForm">
+          <div class="form-group">
+            <label for="userName">Your Name</label>
+            <input type="text" id="userName" placeholder="Enter your name (optional)">
+          </div>
+          <div class="form-group">
+            <label for="userDob">Your Date of Birth</label>
+            <input type="date" id="userDob" min="1900-01-01" required>
+          </div>
+          <button type="submit">Calculate</button>
+        </form>
+      </section>
+
+      <!-- Results (hidden until form is submitted) -->
+      <section id="results" class="results hidden">
+
+        <!-- Tab bar -->
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="tab1">A Space Journey</button>
+          <button class="tab-btn" data-tab="tab2">Your Dayversary</button>
+          <button class="tab-btn" data-tab="tab3">Memento Mori</button>
+        </div>
+
+        <!-- Tab 1: A Space Journey -->
+        <section id="tab1" class="tab-panel active">
+          <h2>A cosmic Journey!</h2>
+          <h4 id="greeting"></h4>
+          <p id="birthInfo"></p>
+
+          <details>
+            <summary><strong>Hey, do you know how fast you're going? <span class="accent">Click here</span> to find out!</strong></summary>
+            <div class="expander-content">
+              <ul>
+                <li>The Earth's speed at the equator relative to its center is 460 m/s (1656 km/h)</li>
+                <li>The Earth revolves around the Sun at a speed of 30 Km/s (108,000 Km/h)</li>
+                <li>Our solar system travels around the center of our galaxy at a speed of 220 km/s (792,000 km/h)</li>
+                <li>Galaxies around us travel at the incredible speed of 1000 Km/s (3,600,000 km/h) around the Great Attractor, a cluster of galaxies located at the gravitational center of Laniakea, the local supercluster to which the Milky Way also belongs.</li>
+                <li>The Great Attractor is about 150,000,000 light-years away from us; a light-year is equal to almost 9.461 trillion kilometers.</li>
+                <li>So far, we've described these velocities relative to some other structure. But is there a universal reference point with respect to which we can define the motion and therefore the velocity of an object? The cosmic microwave background radiation, discovered in 1964, is the residual radiation from the early stages of the universe's birth and can still be observed today through a radio telescope. Towards the end of the 20th century, it was discovered that the Earth moves relative to the cosmic microwave background radiation at a well-defined speed and direction. The Earth travels at a speed of 370km/s (<span id="speedKmh"></span> km/h) in the direction of the constellation Leo.</li>
+              </ul>
+            </div>
+          </details>
+
+          <p id="distanceInfo"></p>
+
+          <div class="two-col">
+            <div>
+              <h5>Feeling down?</h5>
+              <p id="feelingDown"></p>
+            </div>
+            <div>
+              <h5>Need some grounding?</h5>
+              <p id="needGrounding"></p>
+            </div>
+          </div>
+
+          <h5>So is that a lot or not?</h5>
+          <p id="universeComparison"></p>
+
+          <div class="img-center">
+            <img src="images/galaxy.jpg" alt="Galaxy" width="350">
+          </div>
+
+          <p id="antComparison"></p>
+
+          <div class="img-center">
+            <img src="images/ants.jpg" alt="Ants" width="350">
+          </div>
+
+          <p id="cellComparison"></p>
+
+          <div class="img-center">
+            <img src="images/cell.gif" alt="Cell nucleus" width="200">
+          </div>
+
+          <p id="conclusion" class="conclusion"></p>
+        </section>
+
+        <!-- Tab 2: Your Dayversary -->
+        <section id="tab2" class="tab-panel">
+          <h5>Use the input below to find out the date of your past, current or future dayversary.</h5>
+          <div class="form-group">
+            <label for="daysInput">Enter the number of days</label>
+            <input type="number" id="daysInput" value="10000" min="0">
+          </div>
+          <h2 id="dayversaryResult"></h2>
+          <h5 id="dayversaryAge"></h5>
+        </section>
+
+        <!-- Tab 3: Memento Mori -->
+        <section id="tab3" class="tab-panel">
+          <h5>The following is an interactive <a href="https://en.wikipedia.org/wiki/Memento_mori" target="_blank">Memento Mori</a> calendar.</h5>
+          <p class="caption"><em>Credits: this calendar has been inspired by the Daily Stoic Memento Mori <a href="https://store.dailystoic.com/collections/memento-mori/products/premium-memento-mori-calendar" target="_blank">calendar</a>.</em></p>
+
+          <blockquote>
+            <p><em>You could leave life right now. Let that determine what you do and say and think.</em><br>
+            <strong>Marcus Aurelius</strong></p>
+          </blockquote>
+
+          <p id="lifespanInfo"></p>
+
+          <p id="calendarExplanation"></p>
+
+          <div id="mementoChart"></div>
+
+          <p>Let's not forget that while we should ponder on the brevity of life, we also need to hold that knowledge in tension with how incredible life can be when we remember to live it well and with purpose:</p>
+          <ul>
+            <li>Memento Mori: remember that you will die</li>
+            <li>Memento Vivere: <strong>remember to live!</strong></li>
+          </ul>
+        </section>
+
+      </section>
+    </main>
+
+    <footer>
+      <p>Memento Vivere &mdash; Remember to live</p>
+    </footer>
+  </div>
+
+  <!-- App entry point (ES6 module) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
