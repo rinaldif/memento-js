@@ -19,7 +19,7 @@ export function renderMementoMori(dob, containerId) {
   };
 
   const container = document.getElementById(containerId);
-  const marginL = 60, marginR = 10, marginT = 50, marginB = 10;
+  const marginL = 35, marginR = 5, marginT = 30, marginB = 5;
   const numCols = xLabels.length;   // 52 (weeks)
   const numRows = yLabels.length;   // 80 (years)
 
@@ -61,12 +61,10 @@ export function renderMementoMori(dob, containerId) {
     width,
     height,
     xaxis: {
-      title: xLabel,
       side: 'top',
       dtick: 5,
     },
     yaxis: {
-      title: yLabel,
       autorange: 'reversed',
       dtick: 5,
     },
@@ -77,5 +75,5 @@ export function renderMementoMori(dob, containerId) {
     font: { color: '#FAFAFA' },
   };
 
-  Plotly.newPlot(container, [trace], layout, { displayModeBar: false, responsive: true });
+  Plotly.newPlot(container, [trace], layout, { displayModeBar: false, staticPlot: true });
 }
