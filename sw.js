@@ -1,4 +1,4 @@
-const CACHE_NAME = 'memento-vivere-v6';
+const CACHE_NAME = 'memento-vivere-v7';
 
 const PRECACHE_URLS = [
   './',

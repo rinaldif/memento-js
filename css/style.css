@@ -27,6 +27,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
+  padding-bottom: 60px;
 }
 
 a {
@@ -49,31 +50,26 @@ a:hover {
 
 header {
   text-align: center;
-  padding: 1.5rem 0 1rem;
+  padding: 0.75rem 0 0.5rem;
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem 0 1rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
 /* ===========================
-   Form
+   Form (compact single-row)
    =========================== */
-.form-section h4 {
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
 .accent {
   color: var(--accent);
+}
+
+.form-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: end;
 }
 
 .form-group {
@@ -91,7 +87,6 @@ input[type="text"],
 input[type="date"],
 input[type="number"] {
   width: 100%;
-  max-width: 360px;
   padding: 0.6rem 0.8rem;
   background: var(--bg-surface);
   color: var(--text-color);
@@ -112,7 +107,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 button[type="submit"] {
-  padding: 0.6rem 2rem;
+  padding: 0.6rem 1.2rem;
   background: var(--accent);
   color: #fff;
   border: none;
@@ -135,35 +130,50 @@ button[type="submit"]:hover {
 }
 
 .results {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
-.tab-bar {
+/* ===========================
+   Bottom Tab Bar (fixed nav)
+   =========================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
-  gap: 0;
-  border-bottom: 2px solid var(--border-color);
-  margin-bottom: 1.5rem;
+  justify-content: space-around;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 0.4rem 0;
 }
 
-.tab-btn {
-  padding: 0.6rem 1.2rem;
+.bottom-nav.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.bottom-nav .tab-btn {
+  flex: 1;
+  padding: 0.5rem 0;
   background: none;
   color: var(--text-muted);
   border: none;
-  border-bottom: 3px solid transparent;
-  font-size: 0.95rem;
+  border-top: 3px solid transparent;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s;
   white-space: nowrap;
 }
 
-.tab-btn:hover {
+.bottom-nav .tab-btn:hover {
   color: var(--text-color);
 }
 
-.tab-btn.active {
+.bottom-nav .tab-btn.active {
   color: var(--accent);
-  border-bottom-color: var(--accent);
+  border-top-color: var(--accent);
 }
 
 .tab-panel {
@@ -308,22 +318,21 @@ details[open] summary::before {
   }
 
   header h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .two-col {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+}
 
-  .tab-btn {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
+@media (min-width: 769px) {
+  header {
+    padding: 1rem 0 0.75rem;
   }
 
-  input[type="text"],
-  input[type="date"],
-  input[type="number"] {
-    max-width: 100%;
+  header h1 {
+    font-size: 1.75rem;
   }
 }

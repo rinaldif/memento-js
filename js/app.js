@@ -48,7 +48,8 @@ let currentDob = null;
 // ---- DOM references ----
 const form = document.getElementById('calcForm');
 const results = document.getElementById('results');
-const tabBtns = document.querySelectorAll('.tab-btn');
+const bottomNav = document.getElementById('bottomNav');
+const tabBtns = bottomNav.querySelectorAll('.tab-btn');
 const tabPanels = document.querySelectorAll('.tab-panel');
 const daysInput = document.getElementById('daysInput');
 
@@ -85,10 +86,13 @@ form.addEventListener('submit', (e) => {
   currentDob = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
 
   results.classList.remove('hidden');
+  bottomNav.classList.remove('disabled');
 
   renderSpaceJourney(name, currentDob);
   renderDayversary(currentDob);
   renderMementoTab(currentDob);
+
+  results.scrollIntoView({ behavior: 'smooth' });
 });
 
 // ================================================
