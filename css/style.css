@@ -27,7 +27,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 72px;
 }
 
 a {
@@ -56,6 +56,12 @@ header {
 header h1 {
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }
 
 /* ===========================
@@ -146,7 +152,7 @@ button[type="submit"]:hover {
   justify-content: space-around;
   background: var(--bg-surface);
   border-top: 1px solid var(--border-color);
-  padding: 0.4rem 0;
+  padding: 0.5rem 0;
 }
 
 .bottom-nav.disabled {
@@ -156,7 +162,7 @@ button[type="submit"]:hover {
 
 .bottom-nav .tab-btn {
   flex: 1;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   background: none;
   color: var(--text-muted);
   border: none;
