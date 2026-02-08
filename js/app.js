@@ -53,11 +53,16 @@ const tabBtns = bottomNav.querySelectorAll('.tab-btn');
 const tabPanels = document.querySelectorAll('.tab-panel');
 const daysInput = document.getElementById('daysInput');
 
-// ---- Set max date on DOB input to yesterday ----
+// ---- DOB input: text↔date trick for placeholder support ----
 const dobInput = document.getElementById('userDob');
 const yesterday = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
 dobInput.max = yesterday.toISOString().split('T')[0];
+
+dobInput.addEventListener('focus', () => { dobInput.type = 'date'; });
+dobInput.addEventListener('blur', () => {
+  if (!dobInput.value) dobInput.type = 'text';
+});
 
 // ================================================
 // Tab switching
