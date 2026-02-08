@@ -27,31 +27,15 @@
     </header>
 
     <main>
-      <!-- Form section -->
-      <section class="form-section">
-        <h4>Please enter your <span class="accent">name</span> and <span class="accent">date of birth</span> in the form below.</h4>
-        <form id="calcForm">
-          <div class="form-group">
-            <label for="userName">Your Name</label>
-            <input type="text" id="userName" placeholder="Enter your name (optional)">
-          </div>
-          <div class="form-group">
-            <label for="userDob">Your Date of Birth</label>
-            <input type="date" id="userDob" min="1900-01-01" required>
-          </div>
-          <button type="submit">Calculate</button>
-        </form>
-      </section>
+      <!-- Compact form: single-row grid -->
+      <form id="calcForm" class="form-compact">
+        <input type="text" id="userName" aria-label="Your Name" placeholder="Name">
+        <input type="date" id="userDob" aria-label="Date of Birth" min="1900-01-01" required>
+        <button type="submit">Go</button>
+      </form>
 
       <!-- Results (hidden until form is submitted) -->
       <section id="results" class="results hidden">
-
-        <!-- Tab bar -->
-        <div class="tab-bar">
-          <button class="tab-btn active" data-tab="tab1">A Space Journey</button>
-          <button class="tab-btn" data-tab="tab2">Your Dayversary</button>
-          <button class="tab-btn" data-tab="tab3">Memento Mori</button>
-        </div>
 
         <!-- Tab 1: A Space Journey -->
         <section id="tab1" class="tab-panel active">
@@ -144,11 +128,14 @@
 
       </section>
     </main>
-
-    <footer>
-      <p>Memento Vivere &mdash; Remember to live</p>
-    </footer>
   </div>
+
+  <!-- Bottom tab bar (fixed, always in DOM, disabled until form submit) -->
+  <nav class="bottom-nav disabled" id="bottomNav">
+    <button class="tab-btn active" data-tab="tab1">Journey</button>
+    <button class="tab-btn" data-tab="tab2">Dayversary</button>
+    <button class="tab-btn" data-tab="tab3">Memento</button>
+  </nav>
 
   <!-- App entry point (ES6 module) -->
   <script type="module" src="js/app.js"></script>
